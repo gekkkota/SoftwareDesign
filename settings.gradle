@@ -1,0 +1,2 @@
+rootProject.name = "EMPr"
+include ':app'
