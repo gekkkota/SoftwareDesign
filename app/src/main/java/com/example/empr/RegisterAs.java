@@ -21,9 +21,9 @@ public class RegisterAs extends AppCompatActivity {
         setContentView(R.layout.activity_register_as);
         setTheme(R.style.Theme_EMPr);
 
-        authorBtn = findViewById(R.id.author_btn_signUp);
-        readerBtn = findViewById(R.id.reader_btn_signUp);
-        toLogInAs = findViewById(R.id.signup_btn);
+        authorBtn = findViewById(R.id.author_btn_reg);
+        readerBtn = findViewById(R.id.reader_btn_reg);
+        toLogInAs = findViewById(R.id.login_btn);
 
         toLogInAs.setOnClickListener(v -> {
             startActivity(new Intent(RegisterAs.this, LogInAs.class));

@@ -21,31 +21,31 @@
         app:srcCompat="@drawable/emprlogo" />
 
     <ImageView
-        android:id="@+id/reader_btn_signUp"
+        android:id="@+id/reader_btn_reg"
         android:layout_width="180dp"
         android:layout_height="200dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/signup_btn"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/reader" />
 
     <ImageView
-        android:id="@+id/author_btn_signUp"
+        android:id="@+id/author_btn_reg"
         android:layout_width="180dp"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/signup_btn"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/author" />
 
     <TextView
-        android:id="@+id/signup_btn"
+        android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an Account? Sign up Here"
+        android:text="Already have an account? Login Here"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up as:"
+        android:text="Register as:"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

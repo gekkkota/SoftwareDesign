@@ -13,7 +13,7 @@ import com.example.empr.reader.ReaderLogin;
 public class LogInAs extends AppCompatActivity {
 
     private ImageView authorBtn, readerBtn;
-    private TextView toSignUpAs;
+    private TextView toRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,9 @@ public class LogInAs extends AppCompatActivity {
 
         authorBtn = findViewById(R.id.author_btn);
         readerBtn = findViewById(R.id.reader_btn);
-        toSignUpAs = findViewById(R.id.signup_btn);
+        toRegister = findViewById(R.id.register);
 
-        toSignUpAs.setOnClickListener(v -> {
+        toRegister.setOnClickListener(v -> {
             startActivity(new Intent(LogInAs.this, RegisterAs.class));
             finish();
         });

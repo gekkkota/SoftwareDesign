@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".reader.ReaderRegister"></activity>
+        <activity android:name=".reader.ReaderRegister" />
         <activity android:name=".reader.ReaderLogin" />
         <activity android:name=".author.AuthorRegister" />
         <activity android:name=".author.AuthorLogin" />
