@@ -105,7 +105,7 @@ public class ReaderRegister extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Reader reader = new Reader(fullname, email, userType);
 
-                    FirebaseDatabase.getInstance().getReference("Reader")
+                    FirebaseDatabase.getInstance().getReference("Readers")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(reader)
                             .addOnCompleteListener(task1 -> {

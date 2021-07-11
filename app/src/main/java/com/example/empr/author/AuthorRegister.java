@@ -100,7 +100,7 @@ public class AuthorRegister extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Author author = new Author(fullname, email, userType);
 
-                    FirebaseDatabase.getInstance().getReference("Reader")
+                    FirebaseDatabase.getInstance().getReference("Authors")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(author)
                             .addOnCompleteListener(task1 -> {
