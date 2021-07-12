@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.empr.Home;
 import com.example.empr.LogInAs;
 import com.example.empr.R;
 import com.example.empr.RegisterAs;
@@ -48,7 +49,7 @@ public class AuthorLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         toSignUp.setOnClickListener(v -> {
-            startActivity(new Intent(AuthorLogin.this, RegisterAs.class));
+            startActivity(new Intent(AuthorLogin.this, AuthorRegister.class));
         });
 
         loginBtn.setOnClickListener(v -> {
@@ -88,7 +89,7 @@ public class AuthorLogin extends AppCompatActivity {
                                 String userType = authorProfile.userType;
                                 if(userType.equals("author")){
                                     Toast.makeText(AuthorLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(AuthorLogin.this, LogInAs.class));
+                                    startActivity(new Intent(AuthorLogin.this, Home.class));
                                 } else {
                                     Toast.makeText(AuthorLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }

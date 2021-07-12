@@ -48,7 +48,7 @@ public class ReaderRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         toLogin.setOnClickListener(v -> {
-            startActivity(new Intent(ReaderRegister.this, LogInAs.class));
+            startActivity(new Intent(ReaderRegister.this, ReaderLogin.class));
         });
 
         registerBtn.setOnClickListener(v -> {

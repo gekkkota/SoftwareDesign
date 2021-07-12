@@ -43,7 +43,7 @@ public class AuthorRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         toLogin.setOnClickListener(v -> {
-            startActivity(new Intent(AuthorRegister.this, LogInAs.class));
+            startActivity(new Intent(AuthorRegister.this, AuthorLogin.class));
         });
 
         registerBtn.setOnClickListener(v -> {
