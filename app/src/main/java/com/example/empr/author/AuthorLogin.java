@@ -6,17 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.empr.Home;
-import com.example.empr.LogInAs;
+import com.example.empr.User;
+import com.example.empr.reader.ReaderHome;
 import com.example.empr.R;
-import com.example.empr.RegisterAs;
-import com.example.empr.reader.Reader;
-import com.example.empr.reader.ReaderLogin;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +33,7 @@ public class AuthorLogin extends AppCompatActivity {
     private EditText userEmail, userPass;
     private Button loginBtn;
     private TextView toSignUp;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class AuthorLogin extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_author);
         toSignUp = findViewById(R.id.toSignUp_author);
 
+        progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
         toSignUp.setOnClickListener(v -> {
@@ -74,24 +75,27 @@ public class AuthorLogin extends AppCompatActivity {
                 return;
             }
 
+            progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
-                    FirebaseUser reader = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Readers");
-                    String userID = reader.getUid();
+                    FirebaseUser author = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    String userID = author.getUid();
 
                     reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            Author authorProfile = snapshot.getValue(Author.class);
+                            User userProfile = snapshot.getValue(User.class);
 
-                            if (authorProfile != null){
-                                String userType = authorProfile.userType;
+                            if (userProfile != null){
+                                String userType = userProfile.userType;
                                 if(userType.equals("author")){
-                                    Toast.makeText(AuthorLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(AuthorLogin.this, Home.class));
+                                    Toast.makeText(AuthorLogin.this, "Author successfully logged in!", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+                                    startActivity(new Intent(AuthorLogin.this, AuthorHome.class));
                                 } else {
                                     Toast.makeText(AuthorLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -103,6 +107,7 @@ public class AuthorLogin extends AppCompatActivity {
                     });
                 } else {
                     Toast.makeText(AuthorLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         });

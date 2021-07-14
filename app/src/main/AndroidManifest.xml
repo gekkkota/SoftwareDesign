@@ -11,7 +11,7 @@
         android:theme="@style/SplashScreenTheme">
         <activity android:name=".author.CategoryAddActivity"></activity>
         <activity android:name=".author.AuthorHome" />
-        <activity android:name=".Home" />
+        <activity android:name=".reader.ReaderHome" />
         <activity android:name=".reader.ReaderRegister" />
         <activity android:name=".reader.ReaderLogin" />
         <activity android:name=".author.AuthorRegister" />

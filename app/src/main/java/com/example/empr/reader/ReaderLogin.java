@@ -6,16 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.empr.Home;
-import com.example.empr.LogInAs;
 import com.example.empr.R;
-import com.example.empr.RegisterAs;
-import com.example.empr.author.AuthorLogin;
+import com.example.empr.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +32,7 @@ public class ReaderLogin extends AppCompatActivity {
     private EditText userEmail, userPass;
     private Button loginBtn;
     private TextView toSignUp;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class ReaderLogin extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_reader);
         toSignUp = findViewById(R.id.toSignUp_reader);
 
+        progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
         toSignUp.setOnClickListener(v -> {
@@ -73,24 +74,27 @@ public class ReaderLogin extends AppCompatActivity {
                 return;
             }
 
+            progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     FirebaseUser reader = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Readers");
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
                     String userID = reader.getUid();
 
                     reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            Reader readerProfile = snapshot.getValue(Reader.class);
+                            User userProfile = snapshot.getValue(User.class);
 
-                            if (readerProfile != null){
-                                String userType = readerProfile.userType;
+                            if (userProfile != null){
+                                String userType = userProfile.userType;
                                 if(userType.equals("reader")){
                                     Toast.makeText(ReaderLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(ReaderLogin.this, Home.class));
+                                    progressBar.setVisibility(View.GONE);
+                                    startActivity(new Intent(ReaderLogin.this, ReaderHome.class));
                                 } else {
                                     Toast.makeText(ReaderLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -102,6 +106,7 @@ public class ReaderLogin extends AppCompatActivity {
                     });
                 } else {
                     Toast.makeText(ReaderLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         });
