@@ -61,7 +61,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="90dp"
+            android:layout_marginStart="100dp"
             android:layout_toEndOf="@+id/left_icon"
             android:src="@drawable/archive" />
 
@@ -70,7 +70,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="90dp"
+            android:layout_marginStart="100dp"
             android:layout_toEndOf="@+id/center_icon"
             android:src="@drawable/profile" />
     </RelativeLayout>
