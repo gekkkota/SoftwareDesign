@@ -26,7 +26,9 @@ public class ReaderHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(ReaderHome.this, LogInAs.class));
+                Intent intent = new Intent(ReaderHome.this, LogInAs.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
