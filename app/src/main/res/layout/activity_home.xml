@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgcolor"
-    tools:context=".Home">
+    tools:context=".reader.ReaderHome">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +14,13 @@
         android:layout_marginBottom="90dp"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logout"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp" />
 
     </LinearLayout>
     <include

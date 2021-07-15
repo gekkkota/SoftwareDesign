@@ -16,6 +16,13 @@
         android:gravity="right|bottom"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logout"
+            android:layout_gravity="center" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addPDF"
             android:layout_width="120dp"
