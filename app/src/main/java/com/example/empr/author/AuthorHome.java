@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.empr.LogInAs;
 import com.example.empr.R;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AuthorHome extends AppCompatActivity {
 
     private Button logout;
+    private ImageButton addCategoryBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,15 @@ public class AuthorHome extends AppCompatActivity {
                 startActivity(new Intent(AuthorHome.this, LogInAs.class));
             }
         });
+
+        addCategoryBtn = findViewById(R.id.addCategoryBtn);
+        addCategoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AuthorHome.this, CategoryAddActivity.class));
+            }
+        });
+
     }
 
     //handle click, start category add screen
