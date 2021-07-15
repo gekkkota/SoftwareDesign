@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgcolor"
-    tools:context=".author.PdfAddActivity">
+    tools:context=".author.PdfEditActivity">
 
     <RelativeLayout
-        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@color/primary">
@@ -34,19 +33,9 @@
             android:layout_below="@+id/iconIv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Add a New Book"
+            android:text="Edit Book Info"
             android:textColor="@color/black"
             android:textSize="28sp"/>
-
-        <ImageButton
-            android:id="@+id/attachBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="18dp"
-            android:background="@color/transparent"
-            android:padding="5dp"
-            android:src="@drawable/ic_attach"/>
     </RelativeLayout>
 
     <!--Input Title-->
@@ -123,4 +112,5 @@
         android:layout_marginTop="10dp"
         android:text="Upload"
         />
+
 </RelativeLayout>
