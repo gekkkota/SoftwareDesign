@@ -63,7 +63,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/addCategoryButton"
+            android:id="@+id/addCategoryBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+ Add Category"
@@ -75,6 +75,7 @@
             android:textColor="@color/white"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_pdf"

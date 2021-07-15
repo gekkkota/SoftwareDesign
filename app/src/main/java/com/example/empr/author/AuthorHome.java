@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AuthorHome extends AppCompatActivity {
 
     private Button logout;
-    private ImageButton addCategoryBtn, backBtn;
+    private Button addCategoryBtn;
     private FloatingActionButton pdfAddBtn;
 
     @Override
