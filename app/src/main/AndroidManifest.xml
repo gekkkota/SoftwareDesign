@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".author.PdfEditActivity"></activity>
+        <activity android:name=".author.PdfDetailActivity"></activity>
+        <activity android:name=".author.PdfEditActivity" />
         <activity android:name=".author.CategoryAddActivity" />
         <activity android:name=".author.AuthorHome" />
         <activity android:name=".reader.ReaderHome" />

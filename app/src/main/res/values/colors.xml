@@ -12,5 +12,6 @@
     <color name="secondary">#F5DDAD</color>
     <color name="highlight">#E9E1D4</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="grey">#A19F9F</color>
 
 </resources>
