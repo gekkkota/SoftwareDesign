@@ -30,7 +30,7 @@
             android:layout_marginLeft="70dp"
             android:textSize="30dp"
             android:layout_marginTop="5dp"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"/>
 
         <ImageButton
             android:id="@+id/search_icon"
@@ -42,6 +42,15 @@
             android:backgroundTint="@color/transparent"/>
 
     </RelativeLayout>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        tools:listitem="@layout/row_category"
+        android:layout_margin="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_above="@+id/bottomLl"/>
 
     <LinearLayout
         android:id="@+id/bottomLl"
