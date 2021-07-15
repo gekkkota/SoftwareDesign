@@ -11,12 +11,14 @@ import android.widget.ImageButton;
 import com.example.empr.LogInAs;
 import com.example.empr.R;
 import com.example.empr.reader.ReaderHome;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AuthorHome extends AppCompatActivity {
 
     private Button logout;
     private ImageButton addCategoryBtn;
+    private FloatingActionButton pdfAddBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,13 @@ public class AuthorHome extends AppCompatActivity {
             }
         });
 
+        pdfAddBtn = findViewById(R.id.addPDF);
+        pdfAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AuthorHome.this, PdfAddActivity.class));
+            }
+        });
+
     }
-
-    //handle click, start category add screen
-
 }

@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.icu.text.UnicodeSetSpanner;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,6 +33,7 @@ public class CategoryAddActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button submitBtn;
     private EditText categoryET;
+    private ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +44,20 @@ public class CategoryAddActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         submitBtn = findViewById(R.id.submitBtn);
         categoryET = findViewById(R.id.categoryEt);
+        backBtn = findViewById(R.id.backBtn);
         progressBar = findViewById(R.id.progressBar);
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateData();
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
