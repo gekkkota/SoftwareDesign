@@ -70,7 +70,7 @@ public class ReaderRegister extends AppCompatActivity {
                 }
 
                 if (TextUtils.isEmpty(email)){
-                    userEmail.setError("Full Name is required!");
+                    userEmail.setError("Email is required!");
                     userEmail.requestFocus();
                     return;
                 }
@@ -82,7 +82,7 @@ public class ReaderRegister extends AppCompatActivity {
                 }
 
                 if (TextUtils.isEmpty(password)){
-                    userPassword.setError("Full Name is required!");
+                    userPassword.setError("Password is required!");
                     userPassword.requestFocus();
                     return;
                 }
@@ -118,7 +118,7 @@ public class ReaderRegister extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                                     if (task.isSuccessful()){
-                                        Toast.makeText(ReaderRegister.this, "Author account has been created!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ReaderRegister.this, "Reader account has been created!", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
 
                                         // redirect to Reader Login

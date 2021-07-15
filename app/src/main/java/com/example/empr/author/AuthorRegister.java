@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.empr.R;
 import com.example.empr.User;
+import com.example.empr.reader.ReaderLogin;
+import com.example.empr.reader.ReaderRegister;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,8 +32,6 @@ import java.util.Objects;
 public class AuthorRegister extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    FirebaseDatabase db;
-    DatabaseReference reference;
 
     private EditText userFullName, userEmail, userPassword, userConfPass;
     private Button registerBtn;
@@ -105,11 +105,37 @@ public class AuthorRegister extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                User user = new User(fullName, email, userType);
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            User user = new User(fullName, email, userType);
 
-                db = FirebaseDatabase.getInstance();
-                reference = db.getReference("Users");
-                reference.child(email).setValue(user);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(AuthorRegister.this, "Author account has been created!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+
+                                        // redirect to Author Login
+                                        Intent intent = new Intent(AuthorRegister.this, AuthorLogin.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(AuthorRegister.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(AuthorRegister.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
             }
         });
     }
