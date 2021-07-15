@@ -56,7 +56,7 @@
         android:drawableStart="@drawable/ic_search_gray"
         android:padding="10dp"
         android:background="@color/white"
-        android:textColorHint="@color/gray01"/>
+        android:textColorHint="#C5C5C5"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRv"
