@@ -53,9 +53,6 @@
                 android:text="Add Category"/>
         </LinearLayout>
 
-
-
-
     </LinearLayout>
     <include
         layout="@layout/tool_bar"/>
