@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,23 +8,47 @@
     android:background="@color/bgcolor"
     tools:context=".reader.ReaderHome">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
-        android:layout_marginBottom="90dp"
-        android:orientation="vertical">
+        android:layout_height="70dp"
+        android:background="@drawable/shape_toolbar"
+        android:padding="10dp">
 
-        <Button
-            android:id="@+id/logout"
+
+        <ImageView
+            android:id="@+id/logo_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/emprlogo"/>
+
+        <TextView
+            android:id="@+id/logo_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="logout"
-            android:layout_gravity="center"
-            android:layout_marginTop="200dp" />
+            android:layout_alignLeft="@+id/logo_icon"
+            android:layout_marginLeft="70dp"
+            android:textSize="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_name"/>
 
-    </LinearLayout>
-    <include
-        layout="@layout/tool_bar"/>
+        <ImageButton
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_logout"
+            android:backgroundTint="@color/transparent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        tools:listitem="@layout/row_category"
+        android:layout_margin="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+</RelativeLayout>

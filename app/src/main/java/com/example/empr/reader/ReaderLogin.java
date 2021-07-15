@@ -91,7 +91,11 @@ public class ReaderLogin extends AppCompatActivity {
                                 if(userType.equals("reader")){
                                     Toast.makeText(ReaderLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);
-                                    startActivity(new Intent(ReaderLogin.this, ReaderHome.class));
+
+                                    // redirect to home
+                                    Intent intent = new Intent(ReaderLogin.this, ReaderHome.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(ReaderLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);

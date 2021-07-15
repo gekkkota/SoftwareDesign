@@ -92,7 +92,11 @@ public class AuthorLogin extends AppCompatActivity {
                                 if(userType.equals("author")){
                                     Toast.makeText(AuthorLogin.this, "Author successfully logged in!", Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);
-                                    startActivity(new Intent(AuthorLogin.this, AuthorHome.class));
+
+                                    // redirect to home
+                                    Intent intent = new Intent(AuthorLogin.this, AuthorHome.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(AuthorLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);

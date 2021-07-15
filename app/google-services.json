@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "252698507776",
-    "firebase_url": "https://empr-a38d3-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "empr-a38d3",
-    "storage_bucket": "empr-a38d3.appspot.com"
+    "project_number": "612901465999",
+    "project_id": "empr-4028d",
+    "storage_bucket": "empr-4028d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:252698507776:android:a1b40e98a866f7f99a76e5",
+        "mobilesdk_app_id": "1:612901465999:android:7b7c9cadee54988e74a5fa",
         "android_client_info": {
           "package_name": "com.example.empr"
         }
       },
       "oauth_client": [
         {
-          "client_id": "252698507776-nkmnlnimeisofjt49pcrpkc454oqvtdq.apps.googleusercontent.com",
+          "client_id": "612901465999-4u4lkjguo180i9dj83if7od4gtdrp5m7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWG7q0GpvohIjA4Hp6vb6HfwHM9w-GY2g"
+          "current_key": "AIzaSyCcqrGd-DhRO-AEhY9JHrdxpsWRE0Uq-Zk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "252698507776-nkmnlnimeisofjt49pcrpkc454oqvtdq.apps.googleusercontent.com",
+              "client_id": "612901465999-4u4lkjguo180i9dj83if7od4gtdrp5m7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
