@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +29,9 @@ import java.util.Objects;
 
 public class AuthorRegister extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
+    FirebaseDatabase db;
+    DatabaseReference reference;
 
     private EditText userFullName, userEmail, userPassword, userConfPass;
     private Button registerBtn;
@@ -42,11 +45,11 @@ public class AuthorRegister extends AppCompatActivity {
         setTheme(R.style.Theme_EMPr);
 
         userFullName = findViewById(R.id.fullnameReg_author);
-        userEmail    = findViewById(R.id.emailReg_author);
+        userEmail = findViewById(R.id.emailReg_author);
         userPassword = findViewById(R.id.passwordReg_author);
         userConfPass = findViewById(R.id.confirmPassReg_author);
-        registerBtn  = findViewById(R.id.registerBtn_author);
-        toLogin      = findViewById(R.id.toLogin_author);
+        registerBtn = findViewById(R.id.registerBtn_author);
+        toLogin = findViewById(R.id.toLogin_author);
 
         progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
@@ -58,21 +61,21 @@ public class AuthorRegister extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fullname = userFullName.getText().toString().trim();
+                String fullName = userFullName.getText().toString().trim();
                 String email = userEmail.getText().toString().trim();
                 String password = userPassword.getText().toString().trim();
                 String confirmPass = userConfPass.getText().toString().trim();
 
                 String userType = "author";
 
-                if (TextUtils.isEmpty(fullname)){
+                if (TextUtils.isEmpty(fullName)){
                     userFullName.setError("Full Name is required!");
                     userFullName.requestFocus();
                     return;
                 }
 
                 if (TextUtils.isEmpty(email)){
-                    userEmail.setError("Full Name is required!");
+                    userEmail.setError("Email is required!");
                     userEmail.requestFocus();
                     return;
                 }
@@ -84,7 +87,7 @@ public class AuthorRegister extends AppCompatActivity {
                 }
 
                 if (TextUtils.isEmpty(password)){
-                    userPassword.setError("Full Name is required!");
+                    userPassword.setError("Password is required!");
                     userPassword.requestFocus();
                     return;
                 }
@@ -95,12 +98,6 @@ public class AuthorRegister extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(confirmPass)){
-                    userConfPass.setError("Full Name is required!");
-                    userConfPass.requestFocus();
-                    return;
-                }
-
                 if (!password.equals(confirmPass)){
                     userConfPass.setError("Passwords must match!");
                     userConfPass.requestFocus();
@@ -108,37 +105,11 @@ public class AuthorRegister extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            User user = new User(fullname, email, userType);
+                User user = new User(fullName, email, userType);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(AuthorRegister.this, "Author account has been created!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-
-                                        // redirect to Reader Login
-                                        Intent intent = new Intent(AuthorRegister.this, AuthorLogin.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(AuthorRegister.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
-                        } else {
-                            Toast.makeText(AuthorRegister.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
+                db = FirebaseDatabase.getInstance();
+                reference = db.getReference("Users");
+                reference.child(email).setValue(user);
             }
         });
     }
