@@ -1,4 +1,4 @@
-package com.example.empr.author;
+package com.example.empr.models;
 
 public class ModelCategory {
     String id, category, uid, timestamp;

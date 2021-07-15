@@ -13,8 +13,9 @@ import android.widget.ImageButton;
 
 import com.example.empr.LogInAs;
 import com.example.empr.R;
+import com.example.empr.adapters.AdapterCategory;
 import com.example.empr.databinding.ActivityAuthorHomeBinding;
-import com.example.empr.reader.ReaderHome;
+import com.example.empr.models.ModelCategory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

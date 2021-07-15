@@ -1,9 +1,9 @@
-package com.example.empr;
+package com.example.empr.filter;
 
 import android.widget.Filter;
 
-import com.example.empr.author.AdapterCategory;
-import com.example.empr.author.ModelCategory;
+import com.example.empr.adapters.AdapterCategory;
+import com.example.empr.models.ModelCategory;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class FilterCategory extends Filter {
     //adapter in which filter need to be implemented
     AdapterCategory adapterCategory;
 
-    //constructo
+    //constructor
     public FilterCategory(ArrayList<ModelCategory> filterList, AdapterCategory adapterCategory) {
         this.filterList = filterList;
         this.adapterCategory = adapterCategory;
