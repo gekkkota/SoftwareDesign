@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.empr.R;
+
 public class PdfListAdmin extends AppCompatActivity {
 
     @Override

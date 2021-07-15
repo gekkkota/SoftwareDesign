@@ -59,7 +59,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
         String id = model.getId();
         String category = model.getCategory();
         String uid = model.getUid();
-        long timestamp = model.getTimestamp();
+        String timestamp = model.getTimestamp();
 
         //set data
         holder.categoryTv.setText(category);

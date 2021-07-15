@@ -87,17 +87,18 @@ public class CategoryAddActivity extends AppCompatActivity {
 
         // get timestamp
         long timestamp = System.currentTimeMillis();
+        String strtime = Long.toString(timestamp);
 
         // setup info to add in firebase db
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("id", timestamp);
+        hashMap.put("id", strtime);
         hashMap.put("category", category);
-        hashMap.put("timestamp", timestamp);
+        hashMap.put("timestamp", strtime);
         hashMap.put("uid", firebaseAuth.getUid());
 
         // add to firebase db
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories");
-        ref.child("" + timestamp)
+        ref.child(strtime)
                 .setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

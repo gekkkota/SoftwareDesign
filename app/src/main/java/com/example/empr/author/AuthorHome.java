@@ -31,7 +31,7 @@ public class AuthorHome extends AppCompatActivity {
 
     private ActivityAuthorHomeBinding binding;
 
-    private Button logout;
+    private ImageButton logout;
     private Button addCategoryBtn;
     private FloatingActionButton pdfAddBtn;
 

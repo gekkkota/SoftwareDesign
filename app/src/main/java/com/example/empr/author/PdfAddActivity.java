@@ -140,9 +140,10 @@ public class PdfAddActivity extends AppCompatActivity {
 
         // timestamp
         long timestamp = System.currentTimeMillis();
+        String strtime = Long.toString(timestamp);
 
         // path of pdf in firebase storage
-        String filePathAndName = "Books/" + timestamp;
+        String filePathAndName = "Books/" + strtime;
 
         // storage reference
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
