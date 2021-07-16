@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.empr.R;
 import com.example.empr.User;
+import com.example.empr.author.AuthorHome;
+import com.example.empr.author.AuthorLogin;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -89,13 +91,20 @@ public class ReaderLogin extends AppCompatActivity {
                             if (userProfile != null){
                                 String userType = userProfile.userType;
                                 if(userType.equals("reader")){
-                                    Toast.makeText(ReaderLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.GONE);
 
-                                    // redirect to home
-                                    Intent intent = new Intent(ReaderLogin.this, ReaderHome.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    if(user.isEmailVerified()){
+                                        Toast.makeText(ReaderLogin.this, "Reader successfully logged in!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        // redirect to home
+                                        Intent intent = new Intent(ReaderLogin.this, ReaderHome.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    } else {
+                                        user.sendEmailVerification();
+                                        Toast.makeText(ReaderLogin.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                                    }
                                 } else {
                                     Toast.makeText(ReaderLogin.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);
