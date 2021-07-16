@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class PdfListAdmin extends AppCompatActivity {
 
-    //viewbinding
+    //view binding
     private ActivityPdfListAdminBinding binding;
 
     //arraylist to hold list of data of type ModelPdf
@@ -78,7 +78,7 @@ public class PdfListAdmin extends AppCompatActivity {
             }
         });
 
-        //handle cliock, go to previous activity
+        //handle click, go to previous activity
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class PdfListAdmin extends AppCompatActivity {
         //init list before adding data
         pdfArrayList = new ArrayList<>();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl("Books");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
         ref.orderByChild("categoryId").equalTo(categoryId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override

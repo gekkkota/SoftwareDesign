@@ -94,7 +94,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
             }
         });
 
-        //handle item click, goto PdfListAdminActivity, also pass pdf categoryId
+        //handle item click, goto PdfListAdminActivity, also pass pdf category and  categoryId
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

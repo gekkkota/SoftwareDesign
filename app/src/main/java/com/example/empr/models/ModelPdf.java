@@ -2,17 +2,15 @@ package com.example.empr.models;
 
 public class ModelPdf {
     //variables
-    String uid, id, title, description, categoryId, url;
-    long timestamp;
+    String uid, id, title, description, categoryId, url, timestamp;
 
     //empty constructor, required for firebase
-
     public ModelPdf() {
 
     }
 
     //constructor with all params
-    public ModelPdf(String uid, String id, String title, String description, String categoryId, String url, long timestamp) {
+    public ModelPdf(String uid, String id, String title, String description, String categoryId, String url, String timestamp) {
         this.uid = uid;
         this.id = id;
         this.title = title;
@@ -73,11 +71,11 @@ public class ModelPdf {
         this.url = url;
     }
 
-    public long getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

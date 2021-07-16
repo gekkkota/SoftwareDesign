@@ -36,8 +36,7 @@ public class PdfEditActivity extends AppCompatActivity {
     //book id get from intent started from AdapterPdfAdmin
     private String bookId;
 
-    //progress dialog
-    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
 
     private ArrayList<String> categoryTitleArrayList, categoryIdArrayList;
 
@@ -53,10 +52,7 @@ public class PdfEditActivity extends AppCompatActivity {
         //book id get from intent started from AdapterPdfAdmin
         bookId = getIntent().getStringExtra("bookId");
 
-        //setup progress dialog
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Please wait");
-        progressDialog.setCanceledOnTouchOutside(false);
+        progressBar = findViewById(R.id.progressBar);
 
         loadCategories();
         loadBookInfo();
@@ -157,8 +153,8 @@ public class PdfEditActivity extends AppCompatActivity {
         Log.d(TAG, "updatePdf: Starting updating pdf info to db");
 
         //show progress
-        progressDialog.setMessage("Updating book info...");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
+        Toast.makeText(PdfEditActivity.this, "Updating book info...", Toast.LENGTH_LONG).show();
 
         //setup data to update to db
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -174,7 +170,7 @@ public class PdfEditActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "onSuccess: Book updated...");
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(PdfEditActivity.this, "Book info updated...", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -182,7 +178,7 @@ public class PdfEditActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
                         Log.d(TAG, "onFailure: failed to update due to "+e.getMessage());
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(PdfEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -193,7 +189,7 @@ public class PdfEditActivity extends AppCompatActivity {
     private void categoryDialog(){
         //make string array from arraylist of string
         String[] categoriesArray = new String[categoryTitleArrayList.size()];
-        for (int i = 0, i < categoryTitleArrayList.size(); i++){
+        for (int i = 0; i < categoryTitleArrayList.size(); i++){
             categoriesArray[i] = categoryTitleArrayList.get(i);
         }
 

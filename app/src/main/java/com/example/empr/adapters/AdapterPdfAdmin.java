@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.empr.Constants;
 import com.example.empr.MyApplication;
 import com.example.empr.author.PdfEditActivity;
 import com.example.empr.databinding.RowPdfListAdminBinding;
@@ -90,10 +91,11 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         ModelPdf model = pdfArrayList.get(position);
         String title = model.getTitle();
         String description = model.getDescription();
-        long timestamp = model.getTimestamp();
+        String timestamp = model.getTimestamp();
+        long longtime = Long.parseLong(timestamp);
 
         //we need to convert timestamp to dd/mm/yyyy format
-        String formattedDate = MyApplication.formatTimestamp(timestamp);
+        String formattedDate = MyApplication.formatTimestamp(longtime);
 
         //set data
         holder.titleTv.setText(title);
@@ -139,14 +141,14 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
                         }
                         else if (which == 1){
                             //delete clicked
-                            deletBook(model, holder);
+                            deleteBook(model, holder);
                         }
                     }
                 })
                 .show();
     }
 
-    private void deletBook(ModelPdf model, HolderPdfAdmin holder) {
+    private void deleteBook(ModelPdf model, HolderPdfAdmin holder) {
         String bookId = model.getId();
         String bookUrl = model.getUrl();
         String bookTitle = model.getTitle();
@@ -207,7 +209,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
                     public void onSuccess(StorageMetadata storageMetadata) {
                         //get size in bytes
                         double bytes = storageMetadata.getSizeBytes();
-                        Log.d(TAG. "onSuccess: "+model.getTitle()+ ""+bytes);
+                        Log.d(TAG, "onSuccess: "+model.getTitle()+ ""+bytes);
 
                         //convert bytes to KB, MB
                         double kb = bytes/1024;
@@ -237,8 +239,8 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         //using url we can get file and its metabeta from firebase storage
 
         String pdfUrl = model.getUrl();
-        StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl();
-        ref.getBytes(MAX_BYTES_PDF)
+        StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
+        ref.getBytes(Constants.MAX_BYTES_PDF)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
@@ -299,7 +301,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                         //get category
-                        String category = snapshot.child("category").getValue();
+                        String category = "" + snapshot.child("category").getValue();
 
                         //set to category text view
                         holder.categoryTv.setText(category);
@@ -332,7 +334,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         //ui views of row_pdf_admin.xml
         PDFView pdfView;
         ProgressBar progressBar;
-        TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv,;
+        TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv;
         ImageButton moreBtn;
 
         public HolderPdfAdmin(@NonNull @NotNull View itemView) {

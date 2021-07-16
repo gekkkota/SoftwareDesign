@@ -13,9 +13,9 @@ import android.widget.ImageButton;
 
 import com.example.empr.LogInAs;
 import com.example.empr.R;
-import com.example.empr.author.AdapterCategory;
+import com.example.empr.adapters.AdapterCategory;
 import com.example.empr.author.AuthorHome;
-import com.example.empr.author.ModelCategory;
+import com.example.empr.models.ModelCategory;
 import com.example.empr.databinding.ActivityAuthorHomeBinding;
 import com.example.empr.databinding.ActivityHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
